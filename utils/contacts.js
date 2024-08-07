@@ -16,5 +16,4 @@ const readContact = () => {
 
     console.log(data)
 }
-// menambahkan sedikit komentar pada file contacts.js dan ini diedit menggunakan hp
 module.exports = {readContact}
