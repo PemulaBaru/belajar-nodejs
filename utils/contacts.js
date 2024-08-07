@@ -16,4 +16,5 @@ const readContact = () => {
 
     console.log(data)
 }
+// menambahkan sedikit komentar pada file contacts.js
 module.exports = {readContact}
