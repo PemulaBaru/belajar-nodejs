@@ -13,7 +13,13 @@ if (!fs.existsSync(contactFile)) {
 
 const readContact = () => {
     const data = fs.readFileSync(contactFile, 'utf8')
-
-    console.log(data)
+return data;
 }
-module.exports = {readContact}
+
+const contacts = readContact()
+
+const addContact = (tempContact) => {
+const realContact = contacts.filter((contact) => contact !== tempContact)
+contacts.push(realContact)
+}
+module.exports = {readContact, addContact}
