@@ -11,15 +11,22 @@ if (!fs.existsSync(contactFile)) {
     fs.writeFileSync(contactFile, '[]', 'utf8');
 }
 
-const readContact = () => {
+const loadContact = () => {
     const data = fs.readFileSync(contactFile, 'utf8')
-return data;
+    const parseData = JSON.parse(data)
+return parseData
 }
 
-const contacts = readContact()
+const contacts = loadContact()
 
 const addContact = (tempContact) => {
 const realContact = contacts.filter((contact) => contact !== tempContact)
-contacts.push(realContact)
+contacts.push(JSON.parse(realContact))
+
 }
-module.exports = {readContact, addContact}
+
+const deleteContact = (tempContact) => {
+
+}
+
+module.exports = {loadContact, addContact}
