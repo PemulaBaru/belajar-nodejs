@@ -13,20 +13,39 @@ if (!fs.existsSync(contactFile)) {
 
 const loadContact = () => {
     const data = fs.readFileSync(contactFile, 'utf8')
-    const parseData = JSON.parse(data)
-return parseData
+    const contacts = JSON.parse(data)
+    return contacts
 }
 
-const contacts = loadContact()
+const saveContact = (contacts) => {
+    fs.writeFileSync('data/contact.json',JSON.stringify(contacts))
+}
 
-const addContact = (tempContact) => {
-const realContact = contacts.filter((contact) => contact !== tempContact)
-contacts.push(JSON.parse(realContact))
+const addContact = (contact) => {
+    const contacts = loadContact()
+    contacts.push(contact)
+saveContact(contacts)
+}
 
+const findContact = (findContact) => {
+    const contacts = loadContact()
+   const index = contacts.findIndex((contact) => contact.nama == findContact)
+const contact = contacts[index]
+if(index > -1) {
+    return {contact, index}
+} else {
+return "Kontak yang kamu cari tidak dapat ditemukan, coba lagi."
+}
 }
 
 const deleteContact = (tempContact) => {
-
+    const contacts = loadContact()
+const newContacts = contacts.filter(contact => contact !== tempContact)
+saveContact(newContacts)
 }
 
-module.exports = {loadContact, addContact}
+const checkDuplikat = (check) => {
+    const contacts = loadContact()
+return contacts.find(contact => contact == check)
+}
+module.exports = {loadContact, addContact, findContact,deleteContact, checkDuplikat}

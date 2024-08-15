@@ -1,16 +1,28 @@
-<h1>Tambah Kontak</h1>
-<form>
+<div class="container-fluid">
+  <div class="col-6">
+<h2 class="mt-3 mb-2">Tambah Kontak</h2>
+<% if (typeof errors != "undefined") { %>
+  <% errors.forEach((error) => { %>
+    <div class="alert alert-danger mt-2 mb-2"><%= error.msg %></div>
+    
+  <% }) %>
+<% } %>
+<form method="POST" action="/contact">
     <div class="mb-3">
       <label for="Nama" class="form-label">Nama:</label>
-      <input type="text" class="form-control" id="Nama" =>
+      <input type="text" class="form-control" id="Nama" name="nama" required>
     </div>
     <div class="mb-3">
       <label for="nohp" class="form-label">No.hp: </label>
-      <input type="text" class="form-control" id="nohp">
+      <input type="text" class="form-control" id="nohp" name="nohp" required>
     </div>
+   
     <div class="mb-3">
-        <label class="form-label" for="email">Email: </label>
-      <input type="email" class="form-label" id="email">
+      <label for="email" class="form-label">Email : </label>
+      <input type="email" class="form-control" id="email" name="email" required>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+   
+    <button type="submit" class="btn btn-primary">Tambah Kontak</button>
   </form>
+</div>
+</div>
