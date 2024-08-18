@@ -29,7 +29,7 @@ saveContact(contacts)
 
 const findContact = (findContact) => {
     const contacts = loadContact()
-   const index = contacts.findIndex((contact) => contact.nama == findContact)
+   const index = contacts.findIndex((contact) => contact.nama.toLowerCase() == findContact)
 const contact = contacts[index]
 if(index > -1) {
     return {contact, index}
@@ -47,5 +47,6 @@ saveContact(newContacts)
 const checkDuplikat = (check) => {
     const contacts = loadContact()
 return contacts.find(contact => contact == check)
-}
+} 
+
 module.exports = {loadContact, addContact, findContact,deleteContact, checkDuplikat}

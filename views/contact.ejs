@@ -1,12 +1,16 @@
 <div class="container-fluid">
+ 
   <h2 class="mt-3 mb-2">Halaman Kontak</h2>
-<div class="col-6 d-flex justify-content-end">
-    <a href="/contact/add-contact" class="btn btn-primary my-2">Tambah Kontak</a>
-         <input type="text"  id="inputKontak">
-         <div id="searchKontak" class="btn btn-primary"><i class="bi bi-search"></i></div>
-         <a href="" class="btn btn-primary"></a>
+<div class="col-8 d-inline-flex align-items-center justify-content-start">
+    <a href="/contact/add-contact" class="btn btn-primary my-2 btn-contact d-flex order-3 mx-2 align-items-center ">Tambah Kontak</a>
+    <div class="mx-2 order-1">
+      <label for="inputKontak">Cari: </label>
+           <input type="search"  id="inputKontak" placeholder="contact...">
+    </div>
+         <button type="button" id="searchKontak" class="btn btn-primary btn-contact d-flex mx-2 order-2 align-items-center"><i class="bi bi-search"></i></button>
+        
   </div>
-</div>
+
   <table class="table">
     <thead>
      <tr>
@@ -36,8 +40,11 @@
           <td><%= contact.nohp%></td>
           <td><a class="badge rounded-pill text-bg-success" href="/contact/<%= contact.nama %>"><i class="bi bi-info-circle"></i>Detail</a></td>
         </tr>
-          <% }) %>
+        <% }) %>
           <% } %>
         </tbody>
         </table>
     </div>
+    <script src="dom-contact.js">
+      </script>  
+   

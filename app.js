@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const port = 3000
-const {loadContact, addContact, deleteContact, checkDuplikat, findContact } = require('./utils/contacts');
+const {loadContact, addContact, deleteContact, checkDuplikat, findContact, takeInputValue } = require('./utils/contacts');
 const expressLayouts = require('express-ejs-layouts');
 const {body, check, validationResult} = require('express-validator');
 app.set("view engine", "ejs")
@@ -20,7 +20,7 @@ res.render("index", {layout: "layouts/main-layout", title: "Halaman Home"})
 })
 .get('/contact', (req, res) => {
     const contacts = loadContact()
-    res.render('contact', {layout: "layouts/main-layout", title: "Halaman Contact", contacts })
+    res.render('contact', {layout: "layouts/main-layout", title: "Halaman Contact", contacts,  })
 })
 .get('/contact/add-contact', (req, res) => {
     res.render('add-contact', {layout:'layouts/main-layout', title: 'Halaman tambah kontak'})
@@ -44,19 +44,26 @@ if(!errors.isEmpty()) {
 }
 else {
 addContact(req.body)
-res.redirect("/contact")
+res.redirect("/contacts")
 }
 })
 .get('/contact/:nama', (req, res) => {
 const foundContact = findContact(req.params.nama)
 
-    res.render('detail', {layout:'layouts/main-layout', title: 'Halaman detail', foundContact})
+    res.render('detail', {layout:'layouts/main-layout', title: 'Halaman detail', foundContact, deleteContact})
 }
 )
 .get('/contact/add-contact', (req, res) => {
 
     res.render('add-contact', {layout:'layouts/main-layout', title: 'Halaman tambah kontak'})
 })
+.get('/contact/delete/:nama', (req, res) => {
+    deleteContact(req.params.nama)
+    console.log("h")
+res.redirect('/contact')
+   
+})
+
 .listen(port, () => {
 console.log("Port saat ini adalah " + port)
 })

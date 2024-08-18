@@ -4,15 +4,12 @@
         <div class="card-body">
           <div class="col-8">
             <h5 class="card-title">CONTACT <%= foundContact.index+1 %></h5>
-         <input type="text"  id="cariKontak">
-         <div id="search" class="btn btn-primary"><<i class="bi bi-search"></i>/div>
-         <a href="" class="btn btn-primary"></a>
           </div>
           <p class="card-text"><%= foundContact.contact.nama %></p>
           <p class="card-text"><%= foundContact.contact.nohp %></p>
           <p class="card-text"><%= foundContact.contact.email %></p>
           <a href="/contact" class="btn btn-primary">Kembali</a>
-          <a href="/contact" class="btn btn-primary">hapus</a>
+          <a href="/contact/delete/:nama" onclick="confirm('Yakin?')"   class="btn btn-primary">hapus</a>
         </div>
       </div>
 </div>
